@@ -1,0 +1,86 @@
+/* components/HeroScroll.module.css */
+
+.scrollContainer {
+  /* --- EXACT ALIGNMENT MATH --- */
+  /* 1. Use 100vw (viewport width) instead of 100% to avoid parent container issues */
+  /* 2. 1200px is your max-width from the page.tsx */
+  /* 3. 20px is the extra gutter/padding you have on your header text */
+  
+  --padding-left: calc((100vw - 1200px) / 2 + 20px);
+  
+  /* Use max() to ensure that on small screens (mobile), it defaults to 20px 
+     instead of becoming negative */
+  padding: 20px 0 40px max(20px, var(--padding-left));
+  /* ---------------------------- */
+
+  display: flex;
+  overflow-x: auto;
+  gap: 24px;
+  
+  /* Snapping & Scroll Physics */
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Hide Scrollbars */
+  scrollbar-width: none;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card Styles */
+.card {
+  flex: 0 0 280px;
+  height: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  isolation: isolate;
+  background-color: #1c1c1e;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.cardImage {
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cardContent {
+  z-index: 2;
+  position: relative;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+}
+
+.price {
+  font-size: 0.85rem;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+.darkTheme { color: white; }
+.lightTheme { color: #1d1d1f; }
