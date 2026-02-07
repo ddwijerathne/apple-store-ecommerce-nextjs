@@ -1,18 +1,8 @@
 /* components/HeroScroll.module.css */
 
 .scrollContainer {
-  /* --- EXACT ALIGNMENT MATH --- */
-  /* 1. Use 100vw (viewport width) instead of 100% to avoid parent container issues */
-  /* 2. 1200px is your max-width from the page.tsx */
-  /* 3. 20px is the extra gutter/padding you have on your header text */
+  padding: 0 80px ;
   
-  --padding-left: calc((100vw - 1200px) / 2 + 20px);
-  
-  /* Use max() to ensure that on small screens (mobile), it defaults to 20px 
-     instead of becoming negative */
-  padding: 20px 0 40px max(20px, var(--padding-left));
-  /* ---------------------------- */
-
   display: flex;
   overflow-x: auto;
   gap: 24px;
@@ -30,14 +20,16 @@
   display: none;
 }
 
-/* Card Styles */
+/* Base Card Styles (Desktop) */
 .card {
-  flex: 0 0 280px;
-  height: 380px;
+  flex: 0 0 280px; 
+  height: 380px;   
   border-radius: 24px;
   overflow: hidden;
   position: relative;
   scroll-snap-align: start;
+  /* Added a margin to prevent hover clip since we removed container padding */
+  margin: 10px 0; 
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
   cursor: pointer;
   padding: 30px;
@@ -50,7 +42,7 @@
 
 .card:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
 }
 
 .cardImage {
@@ -84,3 +76,46 @@
 
 .darkTheme { color: white; }
 .lightTheme { color: #1d1d1f; }
+
+
+/* --- RESPONSIVE STYLES --- */
+
+/* 2. TABLET (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .scrollContainer {
+    /* TABLET: Top/Bottom 0, Left/Right 20px */
+    padding: 0 20px 0 20px; 
+  }
+
+  .card {
+    flex: 0 0 300px;
+    height: 450px;
+  }
+}
+
+/* 3. MOBILE (max-width: 768px) */
+@media (max-width: 768px) {
+  .scrollContainer {
+    /* MOBILE: Top/Bottom 0, Left/Right 10px */
+    padding: 0 10px 0 10px;
+    
+    gap: 16px; 
+  }
+
+  .card {
+    flex: 0 0 240px; 
+    height: 360px;   
+    padding: 20px;
+    border-radius: 20px;
+    margin: 5px 0; /* Smaller margin on mobile */
+  }
+
+  .title { font-size: 1.3rem; }
+  .subtitle { font-size: 0.9rem; line-height: 1.3; }
+  .price { font-size: 0.75rem; }
+  
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

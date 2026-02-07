@@ -114,9 +114,9 @@ const HeroScroll: React.FC = () => {
             src={product.imageUrl}
             alt={product.title}
             fill
-            sizes="(max-width: 768px) 100vw, 320px"
+            sizes="(max-width: 768px) 280px, 320px" 
             className={styles.cardImage}
-            priority={product.id <= 2} // Optional: Prioritize loading the first 2 images
+            priority={product.id <= 2}
           />
 
           <div className={styles.cardContent}>
