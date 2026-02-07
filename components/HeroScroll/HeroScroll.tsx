@@ -114,7 +114,7 @@ const HeroScroll: React.FC = () => {
             src={product.imageUrl}
             alt={product.title}
             fill
-            sizes="(max-width: 768px) 280px, 320px" 
+            sizes="(max-width: 768px) 240px, (max-width: 1200px) 280px, 320px" 
             className={styles.cardImage}
             priority={product.id <= 2}
           />

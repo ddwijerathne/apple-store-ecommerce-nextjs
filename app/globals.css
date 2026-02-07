@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --page-inline-padding: clamp(16px, 6vw, 100px);
 }
 
 @theme inline {
@@ -12,8 +13,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
   }
 }
 
